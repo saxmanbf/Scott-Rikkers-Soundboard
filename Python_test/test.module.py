@@ -47,16 +47,16 @@ display_width = 800
 display_height = 600
 display = pg.display.set_mode((display_width, display_height))
 
+def text_objects(text, font, tc):
+    textSurface = font.render(text, True, tc)
+    return textSurface, textSurface.get_rect()
+
 #populate with title
 display.fill(lightPurple)
 largeText = pg.font.Font(None,50)
-title = largeText.render('Scott Rikkers Soundboard', 1, gold)
-display.blit(title, (190,30))
-
-
-def text_objects(text, font):
-    textSurface = font.render(text, True, lightPurple)
-    return textSurface, textSurface.get_rect()
+titleSurf, titleRect = text_objects("Scott Rikkers Soundboard", largeText, gold)
+titleRect.center = ((display_width/2), (display_height/15))
+display.blit(titleSurf, titleRect)
 
 		# msg 		=	button text
 		# x 		=	x coordinate of top left corner
@@ -65,9 +65,10 @@ def text_objects(text, font):
 		# h 		=	button height
 		# ic 		=	inactive color
 		# ac		=	active color
+		# tc 		=	text color
 		# action	=	sound file
 
-def button(msg, x, y, w, h, ic, ac, action=None):
+def button(msg, x, y, w, h, ic, ac, tc, action=None):
 	mouse = pg.mouse.get_pos()
 	click = pg.mouse.get_pressed()
 	if x+w > mouse[0] > x and y+h > mouse[1] > y:
@@ -80,7 +81,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
 		pg.draw.rect(display, ic,(x,y,w,h))
 
 	smallText = pg.font.SysFont(None,20)
-	textSurf, textRect = text_objects(msg, smallText)
+	textSurf, textRect = text_objects(msg, smallText, tc)
 	textRect.center = ( (x+(w/2)), (y+(h/2)) )
 	display.blit(textSurf, textRect)
 
@@ -97,26 +98,18 @@ while status:
 		if event.type == pg.QUIT:
 			pg.quit()
 			sys.exit()
-	button("*Chuckle*",100,100,150,50,darkPurple,midPurple,Chuckle.play)
-	button("Pregame!",100,200,150,50,darkPurple,midPurple,Pregame.play)
-	button("Hi There",100,300,150,50,darkPurple,midPurple,HiThere.play)
-	button("Your Success",100,400,150,50,darkPurple,midPurple,YourSuccess.play)
-	button("Null",100,500,150,50,darkPurple,midPurple)
-	button("Null",325,100,150,50,darkPurple,midPurple)
-	button("Null",325,200,150,50,darkPurple,midPurple)
-	button("Null",325,300,150,50,darkPurple,midPurple)
-	button("Null",325,400,150,50,darkPurple,midPurple)
-	button("Null",325,500,150,50,darkPurple,midPurple)
-	button("Null",550,100,150,50,darkPurple,midPurple)
-	button("Null",550,200,150,50,darkPurple,midPurple)
-	button("Null",550,300,150,50,darkPurple,midPurple)
-	button("Null",550,400,150,50,darkPurple,midPurple)
-	button("Null",550,500,150,50,darkPurple,midPurple)
-
-
-		
-
-
-
-
-
+	button("*Chuckle*",100,100,150,50,darkPurple,midPurple,lightPurple,Chuckle.play)
+	button("Pregame!",100,200,150,50,darkPurple,midPurple,lightPurple,Pregame.play)
+	button("Hi There",100,300,150,50,darkPurple,midPurple,lightPurple,HiThere.play)
+	button("Your Success",100,400,150,50,darkPurple,midPurple,lightPurple,YourSuccess.play)
+	button("Null",100,500,150,50,darkPurple,midPurple,lightPurple)
+	button("Null",325,100,150,50,darkPurple,midPurple,lightPurple)
+	button("Null",325,200,150,50,darkPurple,midPurple,lightPurple)
+	button("Null",325,300,150,50,darkPurple,midPurple,lightPurple)
+	button("Null",325,400,150,50,darkPurple,midPurple,lightPurple)
+	button("Null",325,500,150,50,darkPurple,midPurple,lightPurple)
+	button("Null",550,100,150,50,darkPurple,midPurple,lightPurple)
+	button("Null",550,200,150,50,darkPurple,midPurple,lightPurple)
+	button("Null",550,300,150,50,darkPurple,midPurple,lightPurple)
+	button("Null",550,400,150,50,darkPurple,midPurple,lightPurple)
+	button("Null",550,500,150,50,darkPurple,midPurple,lightPurple)
